@@ -25,10 +25,20 @@ function App() {
       
       <div className="content">
         
-        <h1 className="headline">Все Кроссовки</h1>
+        <div className="headline">
+          <h1 >Все Кроссовки</h1>
+          <div className="search">
+            <img src="/img/search.svg" alt="Search" />
+            <input placeholder="Поиск..." />
+          </div>
+
+        </div>
         
         <div className="cards">
           <div className="card">
+            <div className="favorite">
+              <img src="/img/heart-unchecked.svg" alt="Unchecked"/>
+            </div>
             <img className="sneakersImg" src="/img/sneakers/1.jpg" alt="sneakers" />
             <h5 className="sneakersName">Мужские Кроссовки Nike Blazer Mid Suede</h5>
             <div className="cardBottom">
@@ -36,9 +46,7 @@ function App() {
                 <span className="priceText">цена:</span>
                 <b className="priceCount">12 999 руб.</b>
               </div>
-              <button className="button">
-                <img width={11} height={11} src="/img/plus.svg" alt="plus" />
-              </button>
+              <img className="button" src="/img/plus.svg" alt="plus" />
             </div>
           </div>
 
@@ -50,9 +58,7 @@ function App() {
                 <span className="priceText">цена:</span>
                 <b className="priceCount">12 999 руб.</b>
               </div>
-              <button className="button">
-                <img width={11} height={11} src="/img/plus.svg" alt="plus" />
-              </button>
+              <img className="button" src="/img/plus.svg" alt="plus" />
             </div>
           </div>
 
@@ -64,9 +70,7 @@ function App() {
                 <span className="priceText">цена:</span>
                 <b className="priceCount">12 999 руб.</b>
               </div>
-              <button className="button">
-                <img width={11} height={11} src="/img/plus.svg" alt="plus" />
-              </button>
+              <img className="button" src="/img/plus.svg" alt="plus" />
             </div>
           </div>
 
@@ -78,9 +82,7 @@ function App() {
                 <span className="priceText">цена:</span>
                 <b className="priceCount">12 999 руб.</b>
               </div>
-              <button className="button">
-                <img width={11} height={11} src="/img/plus.svg" alt="plus" />
-              </button>
+              <img className="button" src="/img/plus.svg" alt="plus" />
             </div>
           </div>
 
