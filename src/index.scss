@@ -101,12 +101,12 @@ body {
 
   .cards {
     display: flex;
-    justify-content: space-between;
   }
 
   .card {
     width: 210px;
     padding: 30px;
+    margin-right: 30px;
     border: 1px solid #F3F3F3;
     border-radius: 40px;
     transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
