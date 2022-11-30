@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Card from "./components/Card";
 import Header from "./components/Header";
 import Overlay from "./components/Overlay";
@@ -25,10 +26,6 @@ const arr = [
   },
 ];
 
-const onClickButton = () => {
-  alert("click");
-};
-
 function App() {
   return (
     <div className="wrapper">
@@ -53,7 +50,8 @@ function App() {
               title={el.title}
               price={el.price}
               img={el.imgUrl}
-              onClick={onClickButton}
+              onClickFavorite={() => console.log("click favorite")}
+              onClickPlus={() => console.log("click plus")}
             />
           ))}
         </div>
