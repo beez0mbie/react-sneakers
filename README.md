@@ -13,3 +13,7 @@
 ### Git source
 
 [Source](https://github.com/Archakov06/react-sneakers)
+
+## Endpoint for data
+
+[MockApi_Sneakers](https://6388c1b5d94a7e5040a6125c.mockapi.io/sneakers)
