@@ -5,6 +5,8 @@ import Overlay from './components/Overlay';
 
 function App() {
   const [items, setItems] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
+  const [isCartOpened, setIsCartOpened] = useState(false);
 
   useEffect(() => {
     fetch('https://6388c1b5d94a7e5040a6125c.mockapi.io/sneakers')
@@ -17,10 +19,13 @@ function App() {
       .then((res) => setItems(res));
   }, []);
 
+  const handleCartState = () => setIsCartOpened(!isCartOpened);
+
   return (
     <div className='wrapper'>
-      {/* <Overlay/> */}
-      <Header />
+      {isCartOpened && <Overlay onCloseCart={handleCartState} />}
+
+      <Header onClickCart={handleCartState} />
 
       <div className='content'>
         <div className='headline'>

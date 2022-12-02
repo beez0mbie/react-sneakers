@@ -1,75 +1,76 @@
-const Overlay = () => {
+const Overlay = ({ onCloseCart }) => {
   return (
-    <div className="overlay">
-      <div className="drawer">
-        <div className="cartTitle">
+    <div className='overlay'>
+      <div className='drawer'>
+        <div className='cartTitle'>
           <h2>Корзина </h2>
           <img
-            className="removeBtn"
-            src="/img/btn-remove.svg"
-            alt="Remove"
+            className='closeCartBtn'
+            src='/img/btn-remove.svg'
+            alt='Remove'
+            onClick={onCloseCart}
           />
         </div>
 
-        <div className="cartItems">
-          <div className="cartItem">
+        <div className='cartItems'>
+          <div className='cartItem'>
             <img
-              className="cartImg"
-              src="/img/sneakers/1.jpg"
-              alt="Sneakers"
+              className='cartImg'
+              src='/img/sneakers/1.jpg'
+              alt='Sneakers'
             />
-            <div className="cartItemTextContent">
-              <p className="cartItemName">
+            <div className='cartItemTextContent'>
+              <p className='cartItemName'>
                 Мужские Кроссовки Nike Blazer Mid Suede
               </p>
-              <b className="cartItemPrice">12 999 руб.</b>
+              <b className='cartItemPrice'>12 999 руб.</b>
             </div>
             <img
-              className="removeBtn"
-              src="/img/btn-remove.svg"
-              alt="Remove"
+              className='removeBtn'
+              src='/img/btn-remove.svg'
+              alt='Remove'
             />
           </div>
-          <div className="cartItem">
+          <div className='cartItem'>
             <img
-              className="cartImg"
-              src="/img/sneakers/1.jpg"
-              alt="Sneakers"
+              className='cartImg'
+              src='/img/sneakers/1.jpg'
+              alt='Sneakers'
             />
-            <div className="cartItemTextContent">
-              <p className="cartItemName">
+            <div className='cartItemTextContent'>
+              <p className='cartItemName'>
                 Мужские Кроссовки Nike Blazer Mid Suede
               </p>
-              <b className="cartItemPrice">12 999 руб.</b>
+              <b className='cartItemPrice'>12 999 руб.</b>
             </div>
             <img
-              className="removeBtn"
-              src="/img/btn-remove.svg"
-              alt="Remove"
+              className='removeBtn'
+              src='/img/btn-remove.svg'
+              alt='Remove'
             />
           </div>
         </div>
 
-        <div className="cartTotalBlock">
+        <div className='cartTotalBlock'>
           <ul>
-            <li className="cartPrice">
+            <li className='cartPrice'>
               <span>Итого:</span>
-              <div className="dashed"></div>
+              <div className='dashed'></div>
               <b>21 498 руб.</b>
             </li>
-            <li className="cartPrice">
+            <li className='cartPrice'>
               <span>Налог 5%</span>
-              <div className="dashed"></div>
+              <div className='dashed'></div>
               <b>1074 руб.</b>
             </li>
           </ul>
 
-          <button className="checkoutBtn">
+          <button className='checkoutBtn'>
             Оформить заказ
             <img
-              src="/img/arrow.svg"
-              alt="Arrow"
-              className="arrowImg"
+              src='/img/arrow.svg'
+              alt='Arrow'
+              className='arrowImg'
             />
           </button>
         </div>

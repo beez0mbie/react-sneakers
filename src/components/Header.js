@@ -1,35 +1,38 @@
-const Header = () => {
+const Header = ({ onClickCart }) => {
   return (
-    <header className="header">
-      <div className="logo">
+    <header className='header'>
+      <div className='logo'>
         <img
-          src="/img/logo.png"
-          alt="sneakers"
-          className="logoSneakers"
+          src='/img/logo.png'
+          alt='sneakers'
+          className='logoSneakers'
         />
-        <div className="description">
-          <h5 className="desctiptionText">React Sneacers</h5>
-          <p className="desctiptionSubText">Магазин лучших кросовок</p>
+        <div className='description'>
+          <h5 className='desctiptionText'>React Sneacers</h5>
+          <p className='desctiptionSubText'>Магазин лучших кросовок</p>
         </div>
       </div>
-      <ul className="iconsUl">
-        <li className="iconLi cart">
+      <ul className='iconsUl'>
+        <li
+          className='iconLi cart'
+          onClick={onClickCart}
+        >
           <img
-            src="/img/cart.svg"
-            alt="Cart"
+            src='/img/cart.svg'
+            alt='Cart'
           />
-          <span className="cartPrice">1205 руб</span>
+          <span className='cartPrice'>1205 руб</span>
         </li>
-        <li className="iconLi heart">
+        <li className='iconLi heart'>
           <img
-            src="/img/heart.svg"
-            alt="Heart"
+            src='/img/heart.svg'
+            alt='Heart'
           />
         </li>
-        <li className="iconLi user">
+        <li className='iconLi user'>
           <img
-            src="/img/user.svg"
-            alt="User"
+            src='/img/user.svg'
+            alt='User'
           />
         </li>
       </ul>
