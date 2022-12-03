@@ -7,6 +7,7 @@ function App() {
   const [items, setItems] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpened, setIsCartOpened] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
     fetch('https://6388c1b5d94a7e5040a6125c.mockapi.io/sneakers')
@@ -38,7 +39,9 @@ function App() {
     });
   };
 
-  console.log(cartItems);
+  const onChangeSearchInput = (event) => {
+    setSearchValue(event.target.value);
+  };
 
   return (
     <div className='wrapper'>
@@ -46,6 +49,7 @@ function App() {
         <Overlay
           items={cartItems}
           onCloseCart={handleCartState}
+          onRemove={(obj) => onDeleteToCart(obj)}
         />
       )}
 
@@ -53,27 +57,46 @@ function App() {
 
       <div className='content'>
         <div className='headline'>
-          <h1>Все Кроссовки</h1>
+          <h1>
+            {searchValue
+              ? `Поиск по фильтру "${searchValue}"`
+              : 'Все Кроссовки'}
+          </h1>
           <div className='search'>
             <img
               src='/img/search.svg'
               alt='Search'
             />
-            <input placeholder='Поиск...' />
+            <input
+              onChange={onChangeSearchInput}
+              value={searchValue}
+              placeholder='Поиск...'
+            />
+            <img
+              className='clearSearch'
+              src='/img/btn-remove.svg'
+              alt='Clear'
+              onClick={() => setSearchValue('')}
+            />
           </div>
         </div>
 
         <div className='cards'>
-          {items.map((item) => (
-            <Card
-              title={item.title}
-              price={item.price}
-              imgUrl={item.imgUrl}
-              onClickFavorite={() => console.log('click favorite')}
-              onClickPlus={(obj) => onAddToCart(obj)}
-              onCheckedPlus={(obj) => onDeleteToCart(obj)}
-            />
-          ))}
+          {items
+            .filter((item) =>
+              item.title.toLowerCase().includes(searchValue.toLowerCase()),
+            )
+            .map((item) => (
+              <Card
+                key={item.title}
+                title={item.title}
+                price={item.price}
+                imgUrl={item.imgUrl}
+                onClickFavorite={() => console.log('click favorite')}
+                onClickPlus={(obj) => onAddToCart(obj)}
+                onCheckedPlus={(obj) => onDeleteToCart(obj)}
+              />
+            ))}
         </div>
       </div>
     </div>

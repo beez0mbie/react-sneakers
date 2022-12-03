@@ -94,6 +94,18 @@ body {
         border: none;
         opacity: 0.7;
       }
+
+      .clearSearch {
+        width: 18px;
+        height: 18px;
+        opacity: 0.5;
+        transition: opacity 0.15s ease-in-out;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
     }
   }
 
