@@ -16,8 +16,7 @@ const Overlay = ({ onCloseCart, items = [], onRemove }) => {
             onClick={onCloseCart}
           />
         </div>
-
-        <div className='cartItems'>
+        {/* <div className='cartItems'>
           {items.map((item) => (
             <div
               key={item.title}
@@ -56,10 +55,31 @@ const Overlay = ({ onCloseCart, items = [], onRemove }) => {
             </li>
           </ul>
 
-          <button className='checkoutBtn'>
+          <button className='greenButton'>
             Оформить заказ
             <img
               src='/img/arrow.svg'
+              alt='Arrow'
+              className='arrowImg'
+            />
+          </button>
+        </div> */}
+        <div className='emptyCart'>
+          <img
+            className='emptyCartImage'
+            src='/img/empty-cart.jpg'
+            alt='EmptyCart'
+          />
+          <div>
+            <h3 className='eptyCartTitle'>Корзина пустая</h3>
+            <p className='eptyCartText'>
+              Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.
+            </p>
+          </div>
+          <button className='greenButton'>
+            Вернуться назад
+            <img
+              src='/img/arrow-left.svg'
               alt='Arrow'
               className='arrowImg'
             />

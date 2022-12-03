@@ -29,14 +29,7 @@ function App() {
   };
 
   const onDeleteToCart = (obj) => {
-    setCartItems((prev) => {
-      let remove = prev;
-      let index = remove.findIndex((el) => el.title === obj.title);
-      if (index > -1) {
-        remove.splice(index, 1);
-      }
-      return remove;
-    });
+    setCartItems((prev) => prev.filter((item) => item.title !== obj.title));
   };
 
   const onChangeSearchInput = (event) => {
@@ -69,7 +62,7 @@ function App() {
             />
             <input
               onChange={onChangeSearchInput}
-              value={searchValue}
+              value={searchValue} //контролируемый инпут
               placeholder='Поиск...'
             />
             <img
