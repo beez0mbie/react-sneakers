@@ -1,7 +1,7 @@
 const Overlay = ({ onCloseCart, items = [], onRemove }) => {
-  const handleRemoveClick = (obj) => {
-    onRemove(obj);
-    console.log('onremove', obj);
+  const handleRemoveClick = (id) => {
+    onRemove(id);
+    console.log('onremove', id);
   };
 
   return (
@@ -37,7 +37,7 @@ const Overlay = ({ onCloseCart, items = [], onRemove }) => {
                     className='removeBtn'
                     src='/img/btn-remove.svg'
                     alt='Remove'
-                    onClick={() => handleRemoveClick(item)}
+                    onClick={() => handleRemoveClick(item.id)}
                   />
                 </div>
               ))}

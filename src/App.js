@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Card from './components/Card';
 import Header from './components/Header';
@@ -10,27 +11,32 @@ function App() {
   const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
-    fetch('https://6388c1b5d94a7e5040a6125c.mockapi.io/sneakers')
-      .then((res) => {
-        if (!res.ok) {
-          throw Error('impossible to fetch sneakers from mockapi');
-        }
-        return res.json();
-      })
-      .then((res) => setItems(res));
+    axios
+      .get('https://6388c1b5d94a7e5040a6125c.mockapi.io/sneakers')
+      .then((res) => setItems(res.data));
   }, []);
 
-  const handleCartState = () => setIsCartOpened(!isCartOpened);
+  useEffect(() => {
+    axios
+      .get('https://6388c1b5d94a7e5040a6125c.mockapi.io/cart')
+      .then((res) => setCartItems(res.data));
+  }, [isCartOpened]);
 
   const onAddToCart = (obj) => {
+    console.log(onAddToCart, obj);
     if (!cartItems.find((el) => el.title === obj.title)) {
+      axios.post('https://6388c1b5d94a7e5040a6125c.mockapi.io/cart', obj);
       setCartItems((prev) => [...prev, obj]);
     }
   };
 
-  const onDeleteToCart = (obj) => {
-    setCartItems((prev) => prev.filter((item) => item.title !== obj.title));
+  const onRemoveItem = (id) => {
+    console.log('onDeleteToCart', id);
+    axios.delete(`https://6388c1b5d94a7e5040a6125c.mockapi.io/cart/${id}`);
+    setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
+
+  const handleCartState = () => setIsCartOpened(!isCartOpened);
 
   const onChangeSearchInput = (event) => {
     setSearchValue(event.target.value);
@@ -42,7 +48,7 @@ function App() {
         <Overlay
           items={cartItems}
           onCloseCart={handleCartState}
-          onRemove={(obj) => onDeleteToCart(obj)}
+          onRemove={(id) => onRemoveItem(id)}
         />
       )}
 
@@ -87,7 +93,7 @@ function App() {
                 imgUrl={item.imgUrl}
                 onClickFavorite={() => console.log('click favorite')}
                 onClickPlus={(obj) => onAddToCart(obj)}
-                onCheckedPlus={(obj) => onDeleteToCart(obj)}
+                onCheckedPlus={() => console.log('Need to do')}
               />
             ))}
         </div>
