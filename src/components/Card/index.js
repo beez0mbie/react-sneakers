@@ -1,11 +1,22 @@
 import { useState } from 'react';
 import styles from './Card.module.scss';
 
-const Card = (props) => {
+const Card = ({
+  title,
+  imgUrl,
+  price,
+  onClickPlus,
+  onCheckedPlus,
+  onClickFavorite,
+}) => {
   const [isAdded, setIsAdded] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
   const handleClickPlus = () => {
+    isAdded
+      ? onCheckedPlus({ title, imgUrl, price })
+      : onClickPlus({ title, imgUrl, price });
+
     setIsAdded(!isAdded);
   };
   const handleClickFavotite = () => {
@@ -27,14 +38,14 @@ const Card = (props) => {
       </div>
       <img
         className={styles.sneakersImg}
-        src={props.img}
+        src={imgUrl}
         alt='sneakers'
       />
-      <h5 className={styles.sneakersName}>{props.title}</h5>
+      <h5 className={styles.sneakersName}>{title}</h5>
       <div className={styles.cardBottom}>
         <div className={styles.price}>
           <span className={styles.priceText}>цена:</span>
-          <b className={styles.priceCount}>{props.price} руб.</b>
+          <b className={styles.priceCount}>{price} руб.</b>
         </div>
         <img
           className={styles.button}

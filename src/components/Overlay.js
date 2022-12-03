@@ -1,4 +1,4 @@
-const Overlay = ({ onCloseCart }) => {
+const Overlay = ({ onCloseCart, items = [] }) => {
   return (
     <div className='overlay'>
       <div className='drawer'>
@@ -13,42 +13,24 @@ const Overlay = ({ onCloseCart }) => {
         </div>
 
         <div className='cartItems'>
-          <div className='cartItem'>
-            <img
-              className='cartImg'
-              src='/img/sneakers/1.jpg'
-              alt='Sneakers'
-            />
-            <div className='cartItemTextContent'>
-              <p className='cartItemName'>
-                Мужские Кроссовки Nike Blazer Mid Suede
-              </p>
-              <b className='cartItemPrice'>12 999 руб.</b>
+          {items.map((item) => (
+            <div className='cartItem'>
+              <img
+                className='cartImg'
+                src={item.imgUrl}
+                alt='Sneakers'
+              />
+              <div className='cartItemTextContent'>
+                <p className='cartItemName'>{item.title}</p>
+                <b className='cartItemPrice'>{item.price} руб.</b>
+              </div>
+              <img
+                className='removeBtn'
+                src='/img/btn-remove.svg'
+                alt='Remove'
+              />
             </div>
-            <img
-              className='removeBtn'
-              src='/img/btn-remove.svg'
-              alt='Remove'
-            />
-          </div>
-          <div className='cartItem'>
-            <img
-              className='cartImg'
-              src='/img/sneakers/1.jpg'
-              alt='Sneakers'
-            />
-            <div className='cartItemTextContent'>
-              <p className='cartItemName'>
-                Мужские Кроссовки Nike Blazer Mid Suede
-              </p>
-              <b className='cartItemPrice'>12 999 руб.</b>
-            </div>
-            <img
-              className='removeBtn'
-              src='/img/btn-remove.svg'
-              alt='Remove'
-            />
-          </div>
+          ))}
         </div>
 
         <div className='cartTotalBlock'>

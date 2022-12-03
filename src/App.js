@@ -21,9 +21,33 @@ function App() {
 
   const handleCartState = () => setIsCartOpened(!isCartOpened);
 
+  const onAddToCart = (obj) => {
+    if (!cartItems.find((el) => el.title === obj.title)) {
+      setCartItems((prev) => [...prev, obj]);
+    }
+  };
+
+  const onDeleteToCart = (obj) => {
+    setCartItems((prev) => {
+      let remove = prev;
+      let index = remove.findIndex((el) => el.title === obj.title);
+      if (index > -1) {
+        remove.splice(index, 1);
+      }
+      return remove;
+    });
+  };
+
+  console.log(cartItems);
+
   return (
     <div className='wrapper'>
-      {isCartOpened && <Overlay onCloseCart={handleCartState} />}
+      {isCartOpened && (
+        <Overlay
+          items={cartItems}
+          onCloseCart={handleCartState}
+        />
+      )}
 
       <Header onClickCart={handleCartState} />
 
@@ -40,13 +64,14 @@ function App() {
         </div>
 
         <div className='cards'>
-          {items.map((el) => (
+          {items.map((item) => (
             <Card
-              title={el.title}
-              price={el.price}
-              img={el.imgUrl}
+              title={item.title}
+              price={item.price}
+              imgUrl={item.imgUrl}
               onClickFavorite={() => console.log('click favorite')}
-              onClickPlus={() => console.log('click plus')}
+              onClickPlus={(obj) => onAddToCart(obj)}
+              onCheckedPlus={(obj) => onDeleteToCart(obj)}
             />
           ))}
         </div>
