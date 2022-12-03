@@ -76,7 +76,10 @@ const Overlay = ({ onCloseCart, items = [], onRemove }) => {
               Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.
             </p>
           </div>
-          <button className='greenButton'>
+          <button
+            onClick={onCloseCart}
+            className='greenButton'
+          >
             Вернуться назад
             <img
               src='/img/arrow-left.svg'
