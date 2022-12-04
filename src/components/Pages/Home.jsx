@@ -1,4 +1,5 @@
 import Card from '../Card';
+import styles from './Home.module.scss';
 
 const Home = ({
   searchValue,
@@ -15,12 +16,12 @@ const Home = ({
     matItemToCart.set(found, cartItem);
   }
   return (
-    <div className='content'>
-      <div className='headline'>
+    <div className={styles.content}>
+      <div className={styles.headline}>
         <h1>
           {searchValue ? `Поиск по фильтру "${searchValue}"` : 'Все Кроссовки'}
         </h1>
-        <div className='search'>
+        <div className={styles.search}>
           <img
             src='/img/search.svg'
             alt='Search'
@@ -31,7 +32,7 @@ const Home = ({
             placeholder='Поиск...'
           />
           <img
-            className='clearSearch'
+            className={styles.clearSearch}
             src='/img/btn-remove.svg'
             alt='Clear'
             onClick={() => setSearchValue('')} //контролируемый инпут
@@ -39,7 +40,7 @@ const Home = ({
         </div>
       </div>
 
-      <div className='cards'>
+      <div className={styles.cards}>
         {items
           .filter((item) =>
             item.title.toLowerCase().includes(searchValue.toLowerCase()),
