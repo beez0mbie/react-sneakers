@@ -5,17 +5,16 @@ const Card = ({
   title,
   imgUrl,
   price,
-  onClickPlus,
-  onCheckedPlus,
+  cartId,
   onClickFavorite,
+  onAddToCart,
+  onRemoveItem,
 }) => {
-  const [isAdded, setIsAdded] = useState(false);
+  const [isAdded, setIsAdded] = useState(cartId !== undefined);
   const [isFavorite, setIsFavorite] = useState(false);
 
   const handleClickPlus = () => {
-    isAdded
-      ? onCheckedPlus({ title, imgUrl, price })
-      : onClickPlus({ title, imgUrl, price });
+    isAdded ? onRemoveItem(cartId) : onAddToCart({ title, imgUrl, price });
 
     setIsAdded(!isAdded);
   };
