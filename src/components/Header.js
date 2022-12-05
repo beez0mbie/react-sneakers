@@ -1,17 +1,20 @@
+import { Link } from 'react-router-dom';
 const Header = ({ onClickCart }) => {
   return (
     <header className='header'>
-      <div className='logo'>
-        <img
-          src='/img/logo.png'
-          alt='sneakers'
-          className='logoSneakers'
-        />
-        <div className='description'>
-          <h5 className='desctiptionText'>React Sneacers</h5>
-          <p className='desctiptionSubText'>Магазин лучших кросовок</p>
+      <Link to='/'>
+        <div className='logo'>
+          <img
+            src='/img/logo.png'
+            alt='sneakers'
+            className='logoSneakers'
+          />
+          <div className='description'>
+            <h5 className='desctiptionText'>React Sneacers</h5>
+            <p className='desctiptionSubText'>Магазин лучших кросовок</p>
+          </div>
         </div>
-      </div>
+      </Link>
       <ul className='iconsUl'>
         <li
           className='iconLi cart'
@@ -23,12 +26,14 @@ const Header = ({ onClickCart }) => {
           />
           <span className='cartPrice'>1205 руб</span>
         </li>
-        <li className='iconLi heart'>
-          <img
-            src='/img/heart.svg'
-            alt='Heart'
-          />
-        </li>
+        <Link to='/favorites'>
+          <li className='iconLi heart'>
+            <img
+              src='/img/heart.svg'
+              alt='Heart'
+            />
+          </li>
+        </Link>
         <li className='iconLi user'>
           <img
             src='/img/user.svg'

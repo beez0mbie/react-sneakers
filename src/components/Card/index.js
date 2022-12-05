@@ -6,12 +6,14 @@ const Card = ({
   imgUrl,
   price,
   cartId,
+  id,
+  favorited = false,
   onClickFavorite,
   onAddToCart,
   onRemoveItem,
 }) => {
   const [isAdded, setIsAdded] = useState(cartId !== undefined);
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(favorited);
 
   const handleClickPlus = () => {
     isAdded ? onRemoveItem(cartId) : onAddToCart({ title, imgUrl, price });
@@ -19,6 +21,7 @@ const Card = ({
     setIsAdded(!isAdded);
   };
   const handleClickFavotite = () => {
+    onClickFavorite({ id, title, imgUrl, price });
     setIsFavorite(!isFavorite);
   };
 

@@ -1,11 +1,12 @@
-import Card from '../Card';
-import styles from './Home.module.scss';
+import Card from '../components/Card';
+import styles from './Pages.module.scss';
 
 const Home = ({
   searchValue,
   setSearchValue,
   onChangeSearchInput,
   items,
+  onAddToFavorites,
   onAddToCart,
   cartItems,
   onRemoveItem,
@@ -51,7 +52,7 @@ const Home = ({
               title={item.title}
               price={item.price}
               imgUrl={item.imgUrl}
-              onClickFavorite={() => console.log('click favorite')}
+              onClickFavorite={onAddToFavorites}
               onAddToCart={onAddToCart}
               onRemoveItem={onRemoveItem}
               cartId={matItemToCart.get(item)?.id}
