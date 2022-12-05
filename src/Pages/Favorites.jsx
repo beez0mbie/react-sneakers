@@ -12,7 +12,7 @@ const Favorites = ({ items = [], onAddToFavorites }) => {
           <Card
             key={item.title}
             onClickFavorite={onAddToFavorites}
-            favorited={true}
+            favorited
             {...item}
           />
         ))}

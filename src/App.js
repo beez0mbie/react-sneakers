@@ -14,17 +14,22 @@ function App() {
   const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
-    axios
-      .get('https://6388c1b5d94a7e5040a6125c.mockapi.io/sneakers')
-      .then((res) => setItems(res.data));
+    async function fetchData() {
+      const itemsResponse = await axios.get(
+        'https://6388c1b5d94a7e5040a6125c.mockapi.io/sneakers',
+      );
+      const cartResponse = await axios.get(
+        'https://6388c1b5d94a7e5040a6125c.mockapi.io/cart',
+      );
+      const favoriteItems = await axios.get(
+        'https://6388c1b5d94a7e5040a6125c.mockapi.io/favorite',
+      );
 
-    axios
-      .get('https://6388c1b5d94a7e5040a6125c.mockapi.io/cart')
-      .then((res) => setCartItems(res.data));
-
-    axios
-      .get('https://6388c1b5d94a7e5040a6125c.mockapi.io/favorite')
-      .then((res) => setFavoriteItems(res.data));
+      setCartItems(cartResponse.data);
+      setFavoriteItems(favoriteItems.data);
+      setItems(itemsResponse.data);
+    }
+    fetchData();
   }, []);
 
   const onAddToCart = async (obj) => {
