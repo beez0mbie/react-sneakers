@@ -10,12 +10,32 @@ const Home = ({
   onAddToCart,
   cartItems,
   onRemoveItem,
+  isLoading,
 }) => {
   const matItemToCart = new Map();
+
   for (const cartItem of cartItems) {
     const found = items.find((item) => item.title === cartItem.title);
     matItemToCart.set(found, cartItem);
   }
+
+  const renderItems = () => {
+    const filteredItems = items.filter((item) =>
+      item.title.toLowerCase().includes(searchValue.toLowerCase()),
+    );
+
+    return (isLoading ? [...Array(10)] : filteredItems).map((item, index) => (
+      <Card
+        key={index}
+        onClickFavorite={onAddToFavorites}
+        onAddToCart={onAddToCart}
+        onRemoveItem={onRemoveItem}
+        cartId={matItemToCart.get(item)?.id}
+        loading={isLoading}
+        {...item}
+      />
+    ));
+  };
   return (
     <div className={styles.content}>
       <div className={styles.headline}>
@@ -41,24 +61,7 @@ const Home = ({
         </div>
       </div>
 
-      <div className={styles.cards}>
-        {items
-          .filter((item) =>
-            item.title.toLowerCase().includes(searchValue.toLowerCase()),
-          )
-          .map((item) => (
-            <Card
-              key={item.title}
-              title={item.title}
-              price={item.price}
-              imgUrl={item.imgUrl}
-              onClickFavorite={onAddToFavorites}
-              onAddToCart={onAddToCart}
-              onRemoveItem={onRemoveItem}
-              cartId={matItemToCart.get(item)?.id}
-            />
-          ))}
-      </div>
+      <div className={styles.cards}>{renderItems()}</div>
     </div>
   );
 };

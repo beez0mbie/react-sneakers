@@ -17,3 +17,8 @@
 ## Endpoint for data
 
 [MockApi_Sneakers](https://6388c1b5d94a7e5040a6125c.mockapi.io/sneakers)
+
+### Used libraries
+
+[React Router Dom](https://reactrouter.com/)
+[React Skeleton](https://skeletonreact.com/)
