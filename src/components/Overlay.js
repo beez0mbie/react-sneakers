@@ -1,7 +1,6 @@
 const Overlay = ({ onCloseCart, items = [], onRemove }) => {
   const handleRemoveClick = (obj) => {
     onRemove(obj);
-    console.log('onremove', obj);
   };
 
   return (

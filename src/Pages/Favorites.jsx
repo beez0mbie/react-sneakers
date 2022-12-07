@@ -3,7 +3,7 @@ import Card from '../components/Card';
 import { useContext } from 'react';
 import AppContext from '../context';
 
-const Favorites = ({ onAddToFavorites }) => {
+const Favorites = ({ onAddToFavorites, onAddToCart }) => {
   const { favoriteItems } = useContext(AppContext);
   return (
     <div className={styles.content}>
@@ -15,7 +15,7 @@ const Favorites = ({ onAddToFavorites }) => {
           <Card
             key={item.title}
             onClickFavorite={onAddToFavorites}
-            favorited
+            onClickAdd={onAddToCart}
             {...item}
           />
         ))}

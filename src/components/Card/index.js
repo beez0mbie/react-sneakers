@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import ContentLoader from 'react-content-loader';
 import styles from './Card.module.scss';
 import { useContext } from 'react';
@@ -8,26 +7,18 @@ const Card = ({
   title,
   imgUrl,
   price,
-  added,
   id,
-  favorited = false,
   onClickFavorite,
   onClickAdd,
   loading,
 }) => {
-  const { items, favoriteItems } = useContext(AppContext);
-
-  const [isAdded, setIsAdded] = useState(added);
-  const [isFavorite, setIsFavorite] = useState(favorited);
+  const { isAddedToCart, isAddedToFavorited } = useContext(AppContext);
 
   const handleClickPlus = () => {
     onClickAdd({ title, imgUrl, price });
-    setIsAdded(!isAdded);
   };
   const handleClickFavotite = () => {
-    console.log({ id, title, imgUrl, price });
     onClickFavorite({ id, title, imgUrl, price });
-    setIsFavorite(!isFavorite);
   };
 
   return (
@@ -87,7 +78,7 @@ const Card = ({
           <div className={styles.favorite}>
             <img
               src={
-                isFavorite
+                isAddedToFavorited(title)
                   ? 'img/btn-heart-checked.svg'
                   : '/img/btn-heart-unchecked.svg'
               }
@@ -108,7 +99,11 @@ const Card = ({
             </div>
             <img
               className={styles.button}
-              src={isAdded ? '/img/btn-plus-checked.svg' : '/img/btn-plus.svg'}
+              src={
+                isAddedToCart(title)
+                  ? '/img/btn-plus-checked.svg'
+                  : '/img/btn-plus.svg'
+              }
               alt='plus'
               onClick={handleClickPlus}
             />

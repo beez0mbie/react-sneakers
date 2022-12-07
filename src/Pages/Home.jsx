@@ -11,7 +11,7 @@ const Home = ({
   onAddToCart,
   isLoading,
 }) => {
-  const { items, cartItems, favoriteItems } = useContext(AppContext);
+  const { items } = useContext(AppContext);
 
   const renderItems = () => {
     const filteredItems = items.filter((item) =>
@@ -19,18 +19,12 @@ const Home = ({
     );
 
     // bug state with rerender after load [...Array(10)]
-    return (false ? [...Array(10)] : filteredItems).map((item, index) => (
+    return (isLoading ? [...Array(10)] : filteredItems).map((item, index) => (
       <Card
         key={index}
         onClickFavorite={onAddToFavorites}
         onClickAdd={onAddToCart}
         loading={isLoading}
-        favorited={favoriteItems.some(
-          (favItem) => favItem.title === item.title,
-        )}
-        added={
-          cartItems.some((cartItem) => cartItem.title === item.title)
-        }
         {...item}
       />
     ));

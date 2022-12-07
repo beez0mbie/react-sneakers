@@ -79,12 +79,28 @@ function App() {
 
   const handleCartState = () => setIsCartOpened(!isCartOpened);
 
+  const isAddedToCart = (title) => {
+    return cartItems.some((cartItem) => cartItem.title === title);
+  };
+
+  const isAddedToFavorited = (title) => {
+    return favoriteItems.some((item) => item.title === title);
+  };
+
   const onChangeSearchInput = (event) => {
     setSearchValue(event.target.value);
   };
 
   return (
-    <AppContext.Provider value={{ items, cartItems, favoriteItems }}>
+    <AppContext.Provider
+      value={{
+        items,
+        cartItems,
+        favoriteItems,
+        isAddedToCart,
+        isAddedToFavorited,
+      }}
+    >
       <div className='wrapper'>
         {isCartOpened && (
           <Overlay
@@ -114,7 +130,12 @@ function App() {
           />
           <Route
             path='favorites/*'
-            element={<Favorites onAddToFavorites={modifyFavorites} />}
+            element={
+              <Favorites
+                onAddToFavorites={modifyFavorites}
+                onAddToCart={modifyCart}
+              />
+            }
           />
         </Routes>
       </div>
