@@ -1,28 +1,31 @@
 import { useState } from 'react';
 import ContentLoader from 'react-content-loader';
 import styles from './Card.module.scss';
+import { useContext } from 'react';
+import AppContext from '../../context';
 
 const Card = ({
   title,
   imgUrl,
   price,
-  cartId,
+  added,
   id,
   favorited = false,
   onClickFavorite,
-  onAddToCart,
-  onRemoveItem,
+  onClickAdd,
   loading,
 }) => {
-  const [isAdded, setIsAdded] = useState(cartId !== undefined);
+  const { items, favoriteItems } = useContext(AppContext);
+
+  const [isAdded, setIsAdded] = useState(added);
   const [isFavorite, setIsFavorite] = useState(favorited);
 
   const handleClickPlus = () => {
-    isAdded ? onRemoveItem(cartId) : onAddToCart({ title, imgUrl, price });
-
+    onClickAdd({ title, imgUrl, price });
     setIsAdded(!isAdded);
   };
   const handleClickFavotite = () => {
+    console.log({ id, title, imgUrl, price });
     onClickFavorite({ id, title, imgUrl, price });
     setIsFavorite(!isFavorite);
   };

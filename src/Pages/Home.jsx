@@ -1,37 +1,36 @@
 import Card from '../components/Card';
 import styles from './Pages.module.scss';
+import { useContext } from 'react';
+import AppContext from '../context';
 
 const Home = ({
   searchValue,
   setSearchValue,
   onChangeSearchInput,
-  items,
   onAddToFavorites,
   onAddToCart,
-  cartItems,
-  onRemoveItem,
   isLoading,
 }) => {
-  const matItemToCart = new Map();
-
-  for (const cartItem of cartItems) {
-    const found = items.find((item) => item.title === cartItem.title);
-    matItemToCart.set(found, cartItem);
-  }
+  const { items, cartItems, favoriteItems } = useContext(AppContext);
 
   const renderItems = () => {
     const filteredItems = items.filter((item) =>
       item.title.toLowerCase().includes(searchValue.toLowerCase()),
     );
 
-    return (isLoading ? [...Array(10)] : filteredItems).map((item, index) => (
+    // bug state with rerender after load [...Array(10)]
+    return (false ? [...Array(10)] : filteredItems).map((item, index) => (
       <Card
         key={index}
         onClickFavorite={onAddToFavorites}
-        onAddToCart={onAddToCart}
-        onRemoveItem={onRemoveItem}
-        cartId={matItemToCart.get(item)?.id}
+        onClickAdd={onAddToCart}
         loading={isLoading}
+        favorited={favoriteItems.some(
+          (favItem) => favItem.title === item.title,
+        )}
+        added={
+          cartItems.some((cartItem) => cartItem.title === item.title)
+        }
         {...item}
       />
     ));
