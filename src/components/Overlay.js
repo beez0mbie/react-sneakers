@@ -1,3 +1,5 @@
+import { Info } from './Info';
+
 const Overlay = ({ onCloseCart, items = [], onRemove }) => {
   const handleRemoveClick = (obj) => {
     onRemove(obj);
@@ -67,30 +69,11 @@ const Overlay = ({ onCloseCart, items = [], onRemove }) => {
             </div>
           </div>
         ) : (
-          <div className='emptyCart'>
-            <img
-              className='emptyCartImage'
-              src='/img/empty-cart.jpg'
-              alt='EmptyCart'
-            />
-            <div>
-              <h3 className='eptyCartTitle'>Корзина пустая</h3>
-              <p className='eptyCartText'>
-                Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.
-              </p>
-            </div>
-            <button
-              onClick={onCloseCart}
-              className='greenButton'
-            >
-              Вернуться назад
-              <img
-                src='/img/arrow-left.svg'
-                alt='Arrow'
-                className='arrowImg'
-              />
-            </button>
-          </div>
+          <Info
+            title='Корзина пустая'
+            description='Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.'
+            image='/img/empty-cart.jpg'
+          />
         )}
       </div>
     </div>
