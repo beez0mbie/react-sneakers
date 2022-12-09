@@ -41,16 +41,29 @@ function App() {
       const found = cartItems.find((item) => item.title === obj.title);
       if (found) {
         console.log('onDeleteToCart', found.id);
-        axios.delete(
+        setCartItems((prev) => prev.filter((item) => item.id !== found.id));
+        await axios.delete(
           `https://6388c1b5d94a7e5040a6125c.mockapi.io/cart/${found.id}`,
         );
-        setCartItems((prev) => prev.filter((item) => item.id !== found.id));
       } else {
+        await setCartItems((prev) => [...prev, obj]);
         const { data } = await axios.post(
           'https://6388c1b5d94a7e5040a6125c.mockapi.io/cart',
           obj,
         );
-        setCartItems((prev) => [...prev, data]);
+        // модифицируем объекты в корзине добавляя им ID как получим
+        // обрати внимани что мы возвращаем prev.map
+        setCartItems((prev) =>
+          prev.map((item) => {
+            if (item.title === data.title) {
+              return {
+                ...item,
+                id: data.id,
+              };
+            }
+            return item;
+          }),
+        );
       }
     } catch (error) {
       throw Error(`Impossible to add to Cart: ${error.message}`);
@@ -61,10 +74,10 @@ function App() {
     try {
       const found = favoriteItems.find((item) => item.title === obj.title);
       if (found) {
-        axios.delete(
+        setFavoriteItems((prev) => prev.filter((item) => item.id !== found.id));
+        await axios.delete(
           `https://6388c1b5d94a7e5040a6125c.mockapi.io/favorite/${found.id}`,
         );
-        setFavoriteItems((prev) => prev.filter((item) => item.id !== found.id));
       } else {
         const { data } = await axios.post(
           'https://6388c1b5d94a7e5040a6125c.mockapi.io/favorite',
@@ -80,7 +93,7 @@ function App() {
   const handleCartState = () => setIsCartOpened(!isCartOpened);
 
   const isAddedToCart = (title) => {
-    return cartItems.find((cartItem) => cartItem.price === title);
+    return cartItems.find((cartItem) => cartItem.title === title);
   };
 
   const isAddedToFavorited = (title) => {
