@@ -100,7 +100,7 @@ const Card = ({
             <img
               className={styles.button}
               src={
-                isAddedToCart(title)
+                isAddedToCart(price)
                   ? '/img/btn-plus-checked.svg'
                   : '/img/btn-plus.svg'
               }

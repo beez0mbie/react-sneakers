@@ -80,7 +80,7 @@ function App() {
   const handleCartState = () => setIsCartOpened(!isCartOpened);
 
   const isAddedToCart = (title) => {
-    return cartItems.find((cartItem) => cartItem.title === title);
+    return cartItems.find((cartItem) => cartItem.price === title);
   };
 
   const isAddedToFavorited = (title) => {
@@ -100,6 +100,7 @@ function App() {
         isAddedToCart,
         isAddedToFavorited,
         handleCartState,
+        setCartItems,
       }}
     >
       <div className='wrapper'>
