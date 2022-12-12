@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { useCart } from '../hook/useCart';
 
 import { Info } from './Info';
+import { useCart } from '../hook/useCart';
 
 const Overlay = ({ onCloseCart, items = [], onRemove }) => {
   const { cartItems, setCartItems, totalPrice } = useCart();

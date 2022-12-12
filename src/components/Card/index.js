@@ -76,15 +76,17 @@ const Card = ({
       ) : (
         <>
           <div className={styles.favorite}>
-            <img
-              src={
-                isAddedToFavorited(title)
-                  ? 'img/btn-heart-checked.svg'
-                  : '/img/btn-heart-unchecked.svg'
-              }
-              alt='Unchecked'
-              onClick={handleClickFavotite}
-            />
+            {onClickFavorite && (
+              <img
+                src={
+                  isAddedToFavorited(title)
+                    ? 'img/btn-heart-checked.svg'
+                    : '/img/btn-heart-unchecked.svg'
+                }
+                alt='Unchecked'
+                onClick={handleClickFavotite}
+              />
+            )}
           </div>
           <img
             className={styles.sneakersImg}
@@ -97,16 +99,18 @@ const Card = ({
               <span className={styles.priceText}>цена:</span>
               <b className={styles.priceCount}>{price} руб.</b>
             </div>
-            <img
-              className={styles.button}
-              src={
-                isAddedToCart(title)
-                  ? '/img/btn-plus-checked.svg'
-                  : '/img/btn-plus.svg'
-              }
-              alt='plus'
-              onClick={handleClickPlus}
-            />
+            {onClickAdd && (
+              <img
+                className={styles.button}
+                src={
+                  isAddedToCart(title)
+                    ? '/img/btn-plus-checked.svg'
+                    : '/img/btn-plus.svg'
+                }
+                alt='plus'
+                onClick={handleClickPlus}
+              />
+            )}
           </div>
         </>
       )}

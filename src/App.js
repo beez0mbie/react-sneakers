@@ -1,10 +1,12 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+
 import Header from './components/Header';
+import Overlay from './components/Overlay';
 import Home from './Pages/Home';
 import Favorites from './Pages/Favorites';
-import Overlay from './components/Overlay';
-import { Routes, Route } from 'react-router-dom';
+import Orders from './Pages/Orders';
 import AppContext from './context';
 
 function App() {
@@ -114,6 +116,8 @@ function App() {
         isAddedToFavorited,
         handleCartState,
         setCartItems,
+        modifyFavorites,
+        modifyCart,
       }}
     >
       <div className='wrapper'>
@@ -147,6 +151,15 @@ function App() {
             path='favorites/*'
             element={
               <Favorites
+                onAddToFavorites={modifyFavorites}
+                onAddToCart={modifyCart}
+              />
+            }
+          />
+          <Route
+            path='orders/*'
+            element={
+              <Orders
                 onAddToFavorites={modifyFavorites}
                 onAddToCart={modifyCart}
               />
