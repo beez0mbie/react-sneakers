@@ -1,6 +1,9 @@
+import { useCart } from '../hook/useCart';
 import { Link } from 'react-router-dom';
 
 const Header = ({ onClickCart }) => {
+  const { totalPrice } = useCart();
+
   return (
     <header className='header'>
       <Link to='/'>
@@ -25,7 +28,7 @@ const Header = ({ onClickCart }) => {
             src='/img/cart.svg'
             alt='Cart'
           />
-          <span className='cartPrice'>1205 руб</span>
+          <span className='cartPrice'>{totalPrice} руб</span>
         </li>
         <Link to='/favorites'>
           <li className='iconLi heart'>

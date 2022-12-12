@@ -1,17 +1,14 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
+import { useCart } from '../hook/useCart';
 
 import { Info } from './Info';
-import AppContext from '../context';
 
 const Overlay = ({ onCloseCart, items = [], onRemove }) => {
-  const { cartItems, setCartItems } = useContext(AppContext);
+  const { cartItems, setCartItems, totalPrice } = useCart();
   const [isOrderComplete, setIsOrderComplete] = useState(false);
   const [orderId, setOrderId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const handleRemoveClick = (obj) => {
-    onRemove(obj);
-  };
 
   const onClickOrder = async () => {
     try {
@@ -34,6 +31,8 @@ const Overlay = ({ onCloseCart, items = [], onRemove }) => {
     }
     setIsLoading(false);
   };
+
+  const tax = Math.ceil((totalPrice / 100) * 5);
 
   return (
     <div className='overlay'>
@@ -68,7 +67,7 @@ const Overlay = ({ onCloseCart, items = [], onRemove }) => {
                     className='removeBtn'
                     src='/img/btn-remove.svg'
                     alt='Remove'
-                    onClick={() => handleRemoveClick(item)}
+                    onClick={() => onRemove(item)}
                   />
                 </div>
               ))}
@@ -79,12 +78,12 @@ const Overlay = ({ onCloseCart, items = [], onRemove }) => {
                 <li className='cartPrice'>
                   <span>Итого:</span>
                   <div className='dashed'></div>
-                  <b>21 498 руб.</b>
+                  <b>{totalPrice} руб.</b>
                 </li>
                 <li className='cartPrice'>
                   <span>Налог 5%</span>
                   <div className='dashed'></div>
-                  <b>1074 руб.</b>
+                  <b>{tax} руб.</b>
                 </li>
               </ul>
 
