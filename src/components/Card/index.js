@@ -1,7 +1,9 @@
 import ContentLoader from 'react-content-loader';
-import styles from './Card.module.scss';
 import { useContext } from 'react';
+
 import AppContext from '../../context';
+
+import styles from './Card.module.scss';
 
 const Card = ({
   title,

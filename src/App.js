@@ -121,13 +121,12 @@ function App() {
       }}
     >
       <div className='wrapper'>
-        {isCartOpened && (
-          <Overlay
-            items={cartItems}
-            onCloseCart={handleCartState}
-            onRemove={modifyCart}
-          />
-        )}
+        <Overlay
+          items={cartItems}
+          onCloseCart={handleCartState}
+          onRemove={modifyCart}
+          opened={isCartOpened}
+        />
 
         <Header onClickCart={handleCartState} />
 

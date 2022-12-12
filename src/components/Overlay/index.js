@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-import { Info } from './Info';
-import { useCart } from '../hook/useCart';
+import { Info } from '../Info';
+import { useCart } from '../../hook/useCart';
 
-const Overlay = ({ onCloseCart, items = [], onRemove }) => {
+import styles from './Overlay.module.scss';
+
+const Overlay = ({ onCloseCart, items = [], onRemove, opened }) => {
   const { cartItems, setCartItems, totalPrice } = useCart();
   const [isOrderComplete, setIsOrderComplete] = useState(false);
   const [orderId, setOrderId] = useState(null);
@@ -35,8 +37,8 @@ const Overlay = ({ onCloseCart, items = [], onRemove }) => {
   const tax = Math.ceil((totalPrice / 100) * 5);
 
   return (
-    <div className='overlay'>
-      <div className='drawer'>
+    <div className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
+      <div className={styles.drawer}>
         <div className='cartTitle'>
           <h2>Корзина </h2>
           <img
