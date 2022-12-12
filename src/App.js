@@ -19,21 +19,22 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
-      const itemsResponse = await axios.get(
-        'https://6388c1b5d94a7e5040a6125c.mockapi.io/sneakers',
-      );
-      const cartResponse = await axios.get(
-        'https://6388c1b5d94a7e5040a6125c.mockapi.io/cart',
-      );
-      const favoriteItems = await axios.get(
-        'https://6388c1b5d94a7e5040a6125c.mockapi.io/favorite',
-      );
+      try {
+        const [itemsResponse, cartResponse, favoriteItems] = await Promise.all([
+          axios.get('https://6388c1b5d94a7e5040a6125c.mockapi.io/sneakers'),
+          axios.get('https://6388c1b5d94a7e5040a6125c.mockapi.io/cart'),
+          axios.get('https://6388c1b5d94a7e5040a6125c.mockapi.io/favorite'),
+        ]);
 
-      setIsLoading(false);
+        setIsLoading(false);
 
-      setCartItems(cartResponse.data);
-      setFavoriteItems(favoriteItems.data);
-      setItems(itemsResponse.data);
+        setCartItems(cartResponse.data);
+        setFavoriteItems(favoriteItems.data);
+        setItems(itemsResponse.data);
+      } catch (error) {
+        alert('Error when get data from server');
+        console.error(error);
+      }
     }
     fetchData();
   }, []);
@@ -81,11 +82,22 @@ function App() {
           `https://6388c1b5d94a7e5040a6125c.mockapi.io/favorite/${found.id}`,
         );
       } else {
+        setFavoriteItems((prev) => [...prev, obj]);
         const { data } = await axios.post(
           'https://6388c1b5d94a7e5040a6125c.mockapi.io/favorite',
           obj,
         );
-        setFavoriteItems((prev) => [...prev, data]);
+        setFavoriteItems((prev) =>
+          prev.map((item) => {
+            if (item.title === data.title) {
+              return {
+                ...item,
+                id: data.id,
+              };
+            }
+            return item;
+          }),
+        );
       }
     } catch (error) {
       throw Error(`Impossible to add to favorites ${error.message}`);
