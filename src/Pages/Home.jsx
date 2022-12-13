@@ -37,7 +37,7 @@ const Home = ({
         </h1>
         <div className={styles.search}>
           <img
-            src='/img/search.svg'
+            src='img/search.svg'
             alt='Search'
           />
           <input
@@ -47,7 +47,7 @@ const Home = ({
           />
           <img
             className={styles.clearSearch}
-            src='/img/btn-remove.svg'
+            src='img/btn-remove.svg'
             alt='Clear'
             onClick={() => setSearchValue('')} //контролируемый инпут
           />

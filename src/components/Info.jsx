@@ -21,7 +21,7 @@ export const Info = ({ title, description, image }) => {
       >
         Вернуться назад
         <img
-          src='/img/arrow-left.svg'
+          src='img/arrow-left.svg'
           alt='Arrow'
           className='arrowImg'
         />

@@ -83,7 +83,7 @@ const Card = ({
                 src={
                   isAddedToFavorited(title)
                     ? 'img/btn-heart-checked.svg'
-                    : '/img/btn-heart-unchecked.svg'
+                    : 'img/btn-heart-unchecked.svg'
                 }
                 alt='Unchecked'
                 onClick={handleClickFavotite}
@@ -106,8 +106,8 @@ const Card = ({
                 className={styles.button}
                 src={
                   isAddedToCart(title)
-                    ? '/img/btn-plus-checked.svg'
-                    : '/img/btn-plus.svg'
+                    ? 'img/btn-plus-checked.svg'
+                    : 'img/btn-plus.svg'
                 }
                 alt='plus'
                 onClick={handleClickPlus}

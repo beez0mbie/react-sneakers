@@ -9,7 +9,7 @@ const Header = ({ onClickCart }) => {
       <Link to='/'>
         <div className='logo'>
           <img
-            src='/img/logo.png'
+            src='img/logo.png'
             alt='sneakers'
             className='logoSneakers'
           />
@@ -25,7 +25,7 @@ const Header = ({ onClickCart }) => {
           onClick={onClickCart}
         >
           <img
-            src='/img/cart.svg'
+            src='img/cart.svg'
             alt='Cart'
           />
           <span className='cartPrice'>{totalPrice} руб</span>
@@ -33,7 +33,7 @@ const Header = ({ onClickCart }) => {
         <Link to='/favorites'>
           <li className='iconLi heart'>
             <img
-              src='/img/heart.svg'
+              src='img/heart.svg'
               alt='Heart'
             />
           </li>
@@ -41,7 +41,7 @@ const Header = ({ onClickCart }) => {
         <Link to='/orders'>
           <li className='iconLi user'>
             <img
-              src='/img/user.svg'
+              src='img/user.svg'
               alt='User'
             />
           </li>

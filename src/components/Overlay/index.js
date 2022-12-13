@@ -43,7 +43,7 @@ const Overlay = ({ onCloseCart, items = [], onRemove, opened }) => {
           <h2>Корзина </h2>
           <img
             className='closeCartBtn'
-            src='/img/btn-remove.svg'
+            src='img/btn-remove.svg'
             alt='Close Cart'
             onClick={onCloseCart}
           />
@@ -67,7 +67,7 @@ const Overlay = ({ onCloseCart, items = [], onRemove, opened }) => {
                   </div>
                   <img
                     className='removeBtn'
-                    src='/img/btn-remove.svg'
+                    src='img/btn-remove.svg'
                     alt='Remove'
                     onClick={() => onRemove(item)}
                   />
@@ -96,7 +96,7 @@ const Overlay = ({ onCloseCart, items = [], onRemove, opened }) => {
               >
                 Оформить заказ
                 <img
-                  src='/img/arrow.svg'
+                  src='img/arrow.svg'
                   alt='Arrow'
                   className='arrowImg'
                 />
@@ -112,9 +112,7 @@ const Overlay = ({ onCloseCart, items = [], onRemove, opened }) => {
                 : 'Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.'
             }
             image={
-              isOrderComplete
-                ? '/img/complete-order.svg'
-                : '/img/empty-cart.svg'
+              isOrderComplete ? 'img/complete-order.svg' : 'img/empty-cart.svg'
             }
           />
         )}
