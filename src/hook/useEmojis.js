@@ -4,7 +4,7 @@ import AppContext from '../context';
 
 export const useEmojis = () => {
   const { emojis } = useContext(AppContext);
-  console.log(emojis);
+  if (emojis.length === 0) return;
   const emojiIndex = Math.floor(Math.random() * emojis.length);
   return emojis[emojiIndex].character;
 };
