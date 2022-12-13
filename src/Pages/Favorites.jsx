@@ -15,24 +15,23 @@ const Favorites = ({ onAddToFavorites, onAddToCart }) => {
     navigate('/react-sneakers/');
   };
   const emoji = useEmojis();
+
   return (
     <div className={styles.content}>
+      <div className={styles.headline}>
+        <h1>Мои закладки</h1>
+      </div>
       {favoriteItems.length > 0 ? (
-        <>
-          <div className={styles.headline}>
-            <h1>Мои закладки</h1>
-          </div>
-          <div className={styles.cards}>
-            {favoriteItems.map((item) => (
-              <Card
-                key={item.title}
-                onClickFavorite={onAddToFavorites}
-                onClickAdd={onAddToCart}
-                {...item}
-              />
-            ))}
-          </div>
-        </>
+        <div className={styles.cards}>
+          {favoriteItems.map((item) => (
+            <Card
+              key={item.title}
+              onClickFavorite={onAddToFavorites}
+              onClickAdd={onAddToCart}
+              {...item}
+            />
+          ))}
+        </div>
       ) : (
         <div className='fillBlock'>
           <Info
