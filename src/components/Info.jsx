@@ -1,22 +1,21 @@
-import React from 'react';
-import AppContext from '../context';
-
-export const Info = ({ title, description, image }) => {
-  const { handleCartState } = React.useContext(AppContext);
-
+export const Info = ({ title, description, image, handleInfoState }) => {
   return (
-    <div className='emptyCart'>
-      <img
-        className='emptyCartImage'
-        src={image}
-        alt='EmptyCart'
-      />
+    <div className='info'>
+      {image ? (
+        <img
+          className='infoImage'
+          src={image}
+          alt='infoImage'
+        />
+      ) : (
+        <div className='emoji'>{'\ud83d\ude06'}</div>
+      )}
       <div>
         <h3 className='eptyCartTitle'>{title}</h3>
         <p className='eptyCartText'>{description}</p>
       </div>
       <button
-        onClick={handleCartState}
+        onClick={handleInfoState}
         className='greenButton'
       >
         Вернуться назад

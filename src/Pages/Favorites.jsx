@@ -1,25 +1,45 @@
-import styles from './Pages.module.scss';
-import Card from '../components/Card';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import Card from '../components/Card';
+import { Info } from '../components/Info';
 import AppContext from '../context';
+
+import styles from './Pages.module.scss';
 
 const Favorites = ({ onAddToFavorites, onAddToCart }) => {
   const { favoriteItems } = useContext(AppContext);
+  let navigate = useNavigate();
+  const routeToHome = () => {
+    navigate('/react-sneakers/');
+  };
   return (
     <div className={styles.content}>
-      <div className={styles.headline}>
-        <h1>Мои закладки</h1>
-      </div>
-      <div className={styles.cards}>
-        {favoriteItems.map((item) => (
-          <Card
-            key={item.title}
-            onClickFavorite={onAddToFavorites}
-            onClickAdd={onAddToCart}
-            {...item}
+      {favoriteItems.length > 0 ? (
+        <>
+          <div className={styles.headline}>
+            <h1>Мои закладки</h1>
+          </div>
+          <div className={styles.cards}>
+            {favoriteItems.map((item) => (
+              <Card
+                key={item.title}
+                onClickFavorite={onAddToFavorites}
+                onClickAdd={onAddToCart}
+                {...item}
+              />
+            ))}
+          </div>
+        </>
+      ) : (
+        <div className='fillBlock'>
+          <Info
+            title={'Закладок нет'}
+            description={'Вы не поставили сердечко ни для каких кроссовок'}
+            handleInfoState={routeToHome}
           />
-        ))}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

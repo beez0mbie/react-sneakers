@@ -164,12 +164,12 @@ body {
   }
 }
 
-.emptyCart {
+.info {
   margin: auto;
   width: 285px;
   text-align: center;
 
-  .emptyCartImage {
+  .infoImage {
     margin-bottom: 10px;
   }
 
@@ -243,4 +243,13 @@ body {
   100% {
     opacity: 1;
   }
+}
+
+.emoji {
+  font-size: 80px;
+}
+
+.fillBlock {
+  display: flex;
+  height: 600px;
 }

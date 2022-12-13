@@ -7,7 +7,7 @@ import { useCart } from '../../hook/useCart';
 import styles from './Overlay.module.scss';
 
 const Overlay = ({ onCloseCart, items = [], onRemove, opened }) => {
-  const { cartItems, setCartItems, totalPrice } = useCart();
+  const { cartItems, setCartItems, totalPrice, handleCartState } = useCart();
   const [isOrderComplete, setIsOrderComplete] = useState(false);
   const [orderId, setOrderId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -114,6 +114,7 @@ const Overlay = ({ onCloseCart, items = [], onRemove, opened }) => {
             image={
               isOrderComplete ? 'img/complete-order.svg' : 'img/empty-cart.svg'
             }
+            handleInfoState={handleCartState}
           />
         )}
       </div>
