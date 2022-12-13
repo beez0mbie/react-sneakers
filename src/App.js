@@ -13,6 +13,7 @@ function App() {
   const [items, setItems] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [favoriteItems, setFavoriteItems] = useState([]);
+  const [emojis, setEmojis] = useState([]);
   const [isCartOpened, setIsCartOpened] = useState(false);
   const [searchValue, setSearchValue] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -20,14 +21,19 @@ function App() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const [itemsResponse, cartResponse, favoriteItems] = await Promise.all([
-          axios.get('https://6388c1b5d94a7e5040a6125c.mockapi.io/sneakers'),
-          axios.get('https://6388c1b5d94a7e5040a6125c.mockapi.io/cart'),
-          axios.get('https://6388c1b5d94a7e5040a6125c.mockapi.io/favorite'),
-        ]);
+        const [itemsResponse, cartResponse, favoriteItems, emoji] =
+          await Promise.all([
+            axios.get('https://6388c1b5d94a7e5040a6125c.mockapi.io/sneakers'),
+            axios.get('https://6388c1b5d94a7e5040a6125c.mockapi.io/cart'),
+            axios.get('https://6388c1b5d94a7e5040a6125c.mockapi.io/favorite'),
+            axios.get(
+              'https://emoji-api.com/emojis?access_key=c8b00719674508abf37905de5ff6eba8e627cbbc',
+            ),
+          ]);
 
         setIsLoading(false);
 
+        setEmojis(emoji.data);
         setCartItems(cartResponse.data);
         setFavoriteItems(favoriteItems.data);
         setItems(itemsResponse.data);
@@ -130,6 +136,7 @@ function App() {
         setCartItems,
         modifyFavorites,
         modifyCart,
+        emojis,
       }}
     >
       <div className='wrapper'>

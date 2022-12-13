@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Card from '../components/Card';
 import { Info } from '../components/Info';
 import AppContext from '../context';
+import { useEmojis } from '../hook/useEmojis';
 
 import styles from './Pages.module.scss';
 
@@ -13,6 +14,7 @@ const Favorites = ({ onAddToFavorites, onAddToCart }) => {
   const routeToHome = () => {
     navigate('/react-sneakers/');
   };
+  const emoji = useEmojis();
   return (
     <div className={styles.content}>
       {favoriteItems.length > 0 ? (
@@ -37,6 +39,7 @@ const Favorites = ({ onAddToFavorites, onAddToCart }) => {
             title={'Закладок нет'}
             description={'Вы не поставили сердечко ни для каких кроссовок'}
             handleInfoState={routeToHome}
+            emoji={emoji}
           />
         </div>
       )}

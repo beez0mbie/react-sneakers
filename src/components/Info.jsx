@@ -1,4 +1,4 @@
-export const Info = ({ title, description, image, handleInfoState }) => {
+export const Info = ({ title, description, image, handleInfoState, emoji }) => {
   return (
     <div className='info'>
       {image ? (
@@ -8,7 +8,7 @@ export const Info = ({ title, description, image, handleInfoState }) => {
           alt='infoImage'
         />
       ) : (
-        <div className='emoji'>{'\ud83d\ude06'}</div>
+        <div className='emoji'>{emoji}</div>
       )}
       <div>
         <h3 className='eptyCartTitle'>{title}</h3>
