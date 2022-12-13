@@ -6,7 +6,7 @@ const Header = ({ onClickCart }) => {
 
   return (
     <header className='header'>
-      <Link to='/'>
+      <Link to='/react-sneakers/'>
         <div className='logo'>
           <img
             src='img/logo.png'
@@ -30,7 +30,7 @@ const Header = ({ onClickCart }) => {
           />
           <span className='cartPrice'>{totalPrice} руб</span>
         </li>
-        <Link to='/favorites'>
+        <Link to='/react-sneakers/favorites'>
           <li className='iconLi heart'>
             <img
               src='img/heart.svg'
@@ -38,7 +38,7 @@ const Header = ({ onClickCart }) => {
             />
           </li>
         </Link>
-        <Link to='/orders'>
+        <Link to='/react-sneakers/orders'>
           <li className='iconLi user'>
             <img
               src='img/user.svg'

@@ -144,7 +144,7 @@ function App() {
 
         <Routes>
           <Route
-            path='/'
+            path='/react-sneakers/'
             element={
               <Home
                 items={items}
@@ -159,7 +159,7 @@ function App() {
             }
           />
           <Route
-            path='favorites/*'
+            path='/react-sneakers/favorites/*'
             element={
               <Favorites
                 onAddToFavorites={modifyFavorites}
@@ -168,7 +168,7 @@ function App() {
             }
           />
           <Route
-            path='orders/*'
+            path='/react-sneakers/orders/*'
             element={
               <Orders
                 onAddToFavorites={modifyFavorites}
